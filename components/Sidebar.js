@@ -10,7 +10,7 @@ import {
   HashtagIcon,
   InboxIcon,
   UserIcon,
-} from '@heroicons/react/outline'
+} from '@heroicons/react/outline';
 
 function Sidebar() {
   return (
