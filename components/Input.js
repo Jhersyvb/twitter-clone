@@ -17,6 +17,7 @@ import {
 import { getDownloadURL, ref, uploadString } from 'firebase/storage'
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
+import { useSession } from 'next-auth/react'
 
 function Input() {
   const [input, setInput] = useState('')
@@ -24,6 +25,7 @@ function Input() {
   const [showEmojis, setShowEmojis] = useState(false)
   const [loading, setLoading] = useState(false)
   const filePickerRef = useRef(null)
+  const { data: session } = useSession()
 
   const sendPost = async () => {
     if (loading) return
@@ -80,7 +82,7 @@ function Input() {
       }`}
     >
       <img
-        src="https://lh3.googleusercontent.com/a/AATXAJwCsuneWAkKlHwMPxOmLNjFACEvbtN8QPwbUsZ-=s96-c"
+        src={session.user.image}
         alt=""
         className="h-11 w-11 rounded-full cursor-pointer"
       />
