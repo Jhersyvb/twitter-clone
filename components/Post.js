@@ -10,13 +10,25 @@ import {
 import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid'
 import { deleteDoc, doc } from 'firebase/firestore'
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import { db } from '../firebase'
+import Moment from 'react-moment'
+import { useRecoilState } from 'recoil'
+import { modalState, postIdState } from '../atoms/modalAtom'
+import { useState } from 'react'
 
 function Post({ id, post, postPage }) {
   const { data: session } = useSession()
+  const [isOpen, setIsOpen] = useRecoilState(modalState)
+  const [postId, setPostId] = useRecoilState(postIdState)
+  const [comments, setComments] = useState([])
+  const router = useRouter()
 
   return (
-    <div className="p-3 flex cursor-pointer border-b border-gray-700">
+    <div
+      className="p-3 flex cursor-pointer border-b border-gray-700"
+      onClick={() => router.push(`/${id}`)}
+    >
       {!postPage && (
         <img
           src={post?.userImg}
@@ -77,7 +89,7 @@ function Post({ id, post, postPage }) {
             postPage && 'mx-auto'
           }`}
         >
-          {/* <div
+          <div
             className="flex items-center space-x-1 group"
             onClick={e => {
               e.stopPropagation()
@@ -93,7 +105,7 @@ function Post({ id, post, postPage }) {
                 {comments.length}
               </span>
             )}
-          </div> */}
+          </div>
 
           {session.user.uid === post?.id ? (
             <div
