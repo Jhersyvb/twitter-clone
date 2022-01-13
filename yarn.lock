@@ -637,6 +637,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@headlessui/react@npm:^1.4.2":
+  version: 1.4.2
+  resolution: "@headlessui/react@npm:1.4.2"
+  peerDependencies:
+    react: ^16 || ^17 || ^18
+    react-dom: ^16 || ^17 || ^18
+  checksum: 28c36204430365190c05cbd48235f8239897360c8d55189583c03868fe640b171051238a8672a501b441de79281bb08285966105bfeb4534ca0e612382dcd41f
+  languageName: node
+  linkType: hard
+
 "@heroicons/react@npm:^1.0.5":
   version: 1.0.5
   resolution: "@heroicons/react@npm:1.0.5"
@@ -4280,6 +4290,7 @@ next@latest:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
+    "@headlessui/react": ^1.4.2
     "@heroicons/react": ^1.0.5
     autoprefixer: ^10.2.6
     emoji-mart: ^3.0.1
