@@ -11,6 +11,7 @@ import { db } from '../firebase'
 import Login from '../components/Login'
 import { ArrowLeftIcon } from '@heroicons/react/solid'
 import Post from '../components/Post'
+import Comment from '../components/Comment'
 
 function PostPage({ trendingResults, followResults, providers }) {
   const { data: session } = useSession()
@@ -60,6 +61,17 @@ function PostPage({ trendingResults, followResults, providers }) {
           </div>
 
           <Post id={id} post={post} postPage />
+          {comments.length > 0 && (
+            <div className="pb-72">
+              {comments.map(comment => (
+                <Comment
+                  key={comment.id}
+                  id={comment.id}
+                  comment={comment.data()}
+                />
+              ))}
+            </div>
+          )}
         </div>
         {/* Widgets */}
 
