@@ -88,12 +88,23 @@ function PostPage({ trendingResults, followResults, providers }) {
 export default PostPage
 
 export async function getServerSideProps(context) {
-  const trendingResults = await fetch('https://jsonkeeper.com/b/NKEV').then(
-    res => res.json()
-  )
-  const followResults = await fetch('https://jsonkeeper.com/b/WWMJ').then(res =>
-    res.json()
-  )
+  let trendingResults = []
+  let followResults = []
+
+  try {
+    const trendingResponse = await fetch('https://api.npoint.io/a4f07cae8bdb42a28f8a')
+    trendingResults = await trendingResponse.json()
+  } catch (error) {
+    console.error(`Could not get Trending news: ${error}`)
+  }
+
+  try {
+    const followResponse = await fetch('https://api.npoint.io/c7675164c604a84140d7')
+    followResults = await followResponse.json()
+  } catch (error) {
+    console.error(`Could not get Following: ${error}`)
+  }
+ 
   const providers = await getProviders()
   const session = await getSession(context)
 
